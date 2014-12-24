@@ -17,7 +17,7 @@ public class PopTheBubble {
 
 	public static void createBubbles(int number) {
 		for (int i = 0; i < number; i++) {
-			createBubble(k1,i);
+			createBubble(k1, i);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class PopTheBubble {
 				if (i == tmp.length - 1) {
 					createBubble(tmp, i);
 				}
-
+				k1 = tmp;
 			}
 
 		}
