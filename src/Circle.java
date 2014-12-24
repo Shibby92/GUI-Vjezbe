@@ -21,15 +21,16 @@ public class Circle extends Geometry {
 			g.setColor(super.getColor());
 			g.fillOval(super.getPositionX(), super.getPositionY(), this.radius, this.radius);
 	}
+	
 	@Override
 	public void move (int frame){
-		if (getPositionX() == 579 ){
+		if (getPositionX() == 580 ){
 			directionX = -1;
 			}
 		if(getPositionX() == 1)
 			directionX=1;
 		setPositionX(getPositionX()+directionX);
-		if (getPositionY() == 359)
+		if (getPositionY() == 360)
 			directionY = -1;
 		if(getPositionY() == 1)
 			directionY=1;
