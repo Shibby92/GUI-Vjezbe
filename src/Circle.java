@@ -7,6 +7,7 @@ public class Circle extends Geometry {
 	public Circle(int positionX, int positionY, int radius, Color color) {
 		super(positionX, positionY, color);
 		this.radius = radius;
+		//stavlja nasumican smjer krugu
 		if(Math.random()<0.5)
 			this.directionX=-1;
 		else
@@ -21,7 +22,7 @@ public class Circle extends Geometry {
 			g.setColor(super.getColor());
 			g.fillOval(super.getPositionX(), super.getPositionY(), this.radius, this.radius);
 	}
-	
+	// odbijanje od okvir prozora
 	@Override
 	public void move (int frame){
 		if (getPositionX() == 580 ){
