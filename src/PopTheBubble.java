@@ -16,11 +16,6 @@ public class PopTheBubble {
 	public static Bubbles k;
 	public static int getIndex;
 
-	public static void createBubble(Circle[] circ, int index) {
-		circ[index] = new Circle((int) (Math.random() * (600 - 100)),
-				(int) (Math.random() * (400 - 100)), 20, Color.RED);
-	}
-
 	public static void main(String[] args) {
 		k = new Bubbles(START_NUMBER);
 		DisappearListener disappear = new DisappearListener();
