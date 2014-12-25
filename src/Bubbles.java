@@ -3,7 +3,7 @@ import java.awt.Color;
 public class Bubbles {
 	private Circle[] bubbles;
 	private static int counter = 0;
-
+static int numberOfCollisions=0;
 	public Bubbles(int numBubbles) {
 		this.bubbles = new Circle[numBubbles];
 		for (int i = 0; i < numBubbles; i++) {
@@ -46,12 +46,18 @@ public class Bubbles {
 		}
 		this.bubbles = tmp;
 	}
-
+//provjerava da li se dvije kuglice sudare
 	public void checkCollision() {
 		for (int i = 0; i < this.bubbles.length - 1; i++) {
-				if (this.getBubbles()[i].collision(this.getBubbles()[i+1])){
+			for(int j=i+1;j<this.bubbles.length;j++){
+				if (this.getBubbles()[i].collision(this.getBubbles()[j])){
+					//ako se desio sudar, mijenja smjer
 					this.getBubbles()[i].changeDirection();
-					this.getBubbles()[i+1].changeDirection();
+					this.getBubbles()[j].changeDirection();
+					//testiranje broja kolizija
+					numberOfCollisions++;
+					System.out.println(numberOfCollisions);
+				}
 				}
 			}
 		}

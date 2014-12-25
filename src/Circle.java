@@ -57,7 +57,7 @@ public class Circle extends Geometry {
 			directionY = 1;
 		setPositionY(getPositionY() + directionY);
 	}
-
+//da li se desio sudar
 	public boolean collision(Circle other) {
 		if ((( other.getPositionX ()<this.getPositionX() + 20 ) && ( other.getPositionX()>this.getPositionX() ))
 				&& (( other.getPositionY()<this.getPositionY() + 20 )&&(other.getPositionY()>this.getPositionY())))
@@ -67,7 +67,7 @@ public class Circle extends Geometry {
 
 		return false;
 	}
-
+//mijenjanje smjera kuglice
 	public void changeDirection() {
 		this.setDirectionX(this.getDirectionX() * -1);
 	}
