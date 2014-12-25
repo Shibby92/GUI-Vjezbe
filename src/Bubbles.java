@@ -47,4 +47,15 @@ public class Bubbles {
 		this.bubbles = tmp;
 	}
 
-}
+	public void checkCollision() {
+		for (int i = 0; i < this.bubbles.length - 1; i++) {
+				if (this.getBubbles()[i].collision(this.getBubbles()[i+1])){
+					this.getBubbles()[i].changeDirection();
+					this.getBubbles()[i+1].changeDirection();
+				}
+			}
+		}
+		
+	}
+
+

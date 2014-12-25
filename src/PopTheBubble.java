@@ -14,24 +14,25 @@ import javax.swing.Timer;
 public class PopTheBubble {
 	private static final int START_NUMBER = 4;
 	static int frame = 0;
-	public static Bubbles k;
+	public static Bubbles bubb;
 	public static int getIndex;
-	static int point=0;
-	static JLabel points=new JLabel();
+	static int point = 0;
+	static JLabel points = new JLabel();
 
 	public static void main(String[] args) {
-		k = new Bubbles(START_NUMBER);
+		bubb = new Bubbles(START_NUMBER);
 		DisappearListener disappear = new DisappearListener();
 		JFrame window = new JFrame("Pop the Bubble");
 		window.setSize(600, 400);
 		window.setLocation(400, 200);
+		window.setResizable(false);
 		window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
-		//kreiram panel
+		// kreiram panel
 		NasPanel mojPanel = new NasPanel();
 		mojPanel.addMouseListener(disappear);
 		mojPanel.setBackground(Color.YELLOW);
 		mojPanel.add(points);
-		//dodajem panel na frame
+		// dodajem panel na frame
 		window.add(mojPanel);
 		window.setVisible(true);
 		Timer frameTimer = new Timer(10, mojPanel);
@@ -45,42 +46,47 @@ public class PopTheBubble {
 			super.paintComponent(g);
 			drawFrame(g, frame++);
 		}
-//crtanje
-		private void drawFrame(Graphics g, int frame) {
-			for (int i = 0; i < k.getBubbles().length; i++) {
-				k.getBubbles()[i].move(frame);
-				k.getBubbles()[i].draw(g, frame);
-			}
-		}
 
+		// crtanje
+		private void drawFrame(Graphics g, int frame) {
+			for (int i = 0; i < bubb.getBubbles().length; i++) {
+				bubb.getBubbles()[i].move(frame);
+				bubb.getBubbles()[i].draw(g, frame);
+				//primitivno odbijanje
+				bubb.checkCollision();
+			}
+			
+		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			repaint();
 		}
 
 	}
-//ispituje da li je kliknut krug ili ne
+
+	// ispituje da li je kliknut krug ili ne
 	public static class DisappearListener implements MouseListener {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			if (inRange(e.getX(), e.getY())){
-				k.addBubble(k.getBubbles(), getIndex);
-			point++;
-			points.setText(String.valueOf(point)); //povecava broj poena
+			if (inRange(e.getX(), e.getY())) {
+				bubb.addBubble(bubb.getBubbles(), getIndex);
+				point++;
+				points.setText(String.valueOf(point)); // povecava broj poena
 			}
-			//prosiruje niz
+			// prosiruje niz
 			else
-				k.expandBubble();
+				bubb.expandBubble();
 
 		}
-//da li je klik u okviru kruga
+
+		// da li je klik u okviru kruga
 		private boolean inRange(int x, int y) {
-			for (int i = 0; i < k.getBubbles().length; i++) {
-				if ((x > k.getBubbles()[i].getPositionX())
-						&& (x < k.getBubbles()[i].getPositionX() + 20)
-						&& (y > k.getBubbles()[i].getPositionY())
-						&& (y < k.getBubbles()[i].getPositionY() + 20)) {
+			for (int i = 0; i < bubb.getBubbles().length; i++) {
+				if ((x > bubb.getBubbles()[i].getPositionX())
+						&& (x < bubb.getBubbles()[i].getPositionX() + 20)
+						&& (y > bubb.getBubbles()[i].getPositionY())
+						&& (y < bubb.getBubbles()[i].getPositionY() + 20)) {
 					getIndex = i;
 					return true;
 				}
