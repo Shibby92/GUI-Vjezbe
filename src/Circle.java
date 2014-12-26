@@ -2,23 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends Geometry {
-	public int getDirectionX() {
-		return directionX;
-	}
 
-	public void setDirectionX(int directionX) {
-		this.directionX = directionX;
-	}
-
-	public int getDirectionY() {
-		return directionY;
-	}
-
-	public void setDirectionY(int directionY) {
-		this.directionY = directionY;
-	}
-
-	private int directionX, directionY;
+	private int directionX, directionY, centreX, centreY;;
 	private int radius;
 
 	public Circle(int positionX, int positionY, int radius, Color color) {
@@ -33,6 +18,8 @@ public class Circle extends Geometry {
 			this.directionY = -1;
 		else
 			this.directionY = 1;
+		this.centreX = getPositionX() + (this.radius / 2);
+		this.centreY = getPositionY() + (this.radius / 2);
 
 	}
 
@@ -57,19 +44,55 @@ public class Circle extends Geometry {
 			directionY = 1;
 		setPositionY(getPositionY() + directionY);
 	}
-//da li se desio sudar
+
+	// da li se desio sudar
 	public boolean collision(Circle other) {
-		if ((( other.getPositionX ()<this.getPositionX() + 20 ) && ( other.getPositionX()>this.getPositionX() ))
-				&& (( other.getPositionY()<this.getPositionY() + 20 )&&(other.getPositionY()>this.getPositionY())))
-			{
+		if (Math.abs((this.getPositionX() + this.radius / 2)
+				- (other.getPositionX() + other.radius / 2)) == 20
+				&& Math.abs((this.getPositionY() + this.radius / 2)
+						- (other.getPositionY()+other.radius/2)) < 20) {
+			System.out.println(this.getCentreX() - other.getCentreX());
 			return true;
 		}
 
 		return false;
 	}
-//mijenjanje smjera kuglice
+
+	// mijenjanje smjera kuglice
 	public void changeDirection() {
 		this.setDirectionX(this.getDirectionX() * -1);
+	}
+
+	public int getCentreX() {
+		return centreX;
+	}
+
+	public void setCentreX(int centreX) {
+		this.centreX = centreX;
+	}
+
+	public int getCentreY() {
+		return centreY;
+	}
+
+	public void setCentreY(int centreY) {
+		this.centreY = centreY;
+	}
+
+	public int getDirectionX() {
+		return directionX;
+	}
+
+	public void setDirectionX(int directionX) {
+		this.directionX = directionX;
+	}
+
+	public int getDirectionY() {
+		return directionY;
+	}
+
+	public void setDirectionY(int directionY) {
+		this.directionY = directionY;
 	}
 
 }
